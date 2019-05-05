@@ -1,6 +1,10 @@
 # TPE-Metodologia
 Sistema de Apoyo a los Puntos Limpios
 
+Materia:    Metodologia y Desarrollo de Software I
+
+Universidad: Universidad Nacional del Centro de la Provincia de Buenos Aires
+
 Grupo conformado por: Juan Ditella
                       Maximiliano G. Barraza
                       Facundo Mozo
@@ -9,7 +13,7 @@ Grupo conformado por: Juan Ditella
                       
 Ayudante asignado:    Antonela Tommasel
 
-          Materia:    Metodologia y Desarrollo de Software I
+
 
 
 
