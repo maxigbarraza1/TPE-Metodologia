@@ -1,4 +1,7 @@
+package actores;
 import java.util.Calendar;
+
+import ubicaciones.Direccion;
 public class PuntoLimpio {
 
 	private Direccion direccion;

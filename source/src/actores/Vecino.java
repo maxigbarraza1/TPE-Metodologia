@@ -1,3 +1,4 @@
+package actores;
 import java.util.Vector;
 public class Vecino extends Usuario {
 	private Vector<ProductoRegistrado> productos;

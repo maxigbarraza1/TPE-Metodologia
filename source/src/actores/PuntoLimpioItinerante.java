@@ -1,4 +1,9 @@
+package actores;
 import java.util.Calendar;
+
+import productos.ProductoRegistrado;
+import ubicaciones.Direccion;
+
 import java.util.ArrayList;
 
 public class PuntoLimpioItinerante{

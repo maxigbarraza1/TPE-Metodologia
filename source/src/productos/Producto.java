@@ -1,3 +1,4 @@
+package productos;
 public class Producto {
 	private int ID;
 	private String nombre;

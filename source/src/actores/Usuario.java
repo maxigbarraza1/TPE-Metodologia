@@ -1,3 +1,4 @@
+package actores;
 public abstract class Usuario {
 	private String nick;
 	private String contraseña;
