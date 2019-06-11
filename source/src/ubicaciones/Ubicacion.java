@@ -1,11 +1,6 @@
 package ubicaciones;
 
-import java.util.Vector;
-
-import estadisticas.Estadistica;
-
-
-public abstract class Ubicacion {
+public class Ubicacion {
 
 	private Punto coordenada;
 	
@@ -21,8 +16,4 @@ public abstract class Ubicacion {
 	public void setCoordenada(Punto coordenada) {
 		this.coordenada = coordenada;
 	}
-	
-	public abstract Vector<Estadistica> getEstadisticas();			//Aca esta el estadisticas por zona
-	
-
 }

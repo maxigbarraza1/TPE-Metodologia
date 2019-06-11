@@ -1,6 +1,9 @@
 package estadisticas;
 
 import java.util.Calendar;
+import java.util.Vector;
+
+import productos.Producto;
 
 public abstract class Estadistica {
 	
@@ -22,7 +25,7 @@ public abstract class Estadistica {
 		this.fecha = fecha;
 	}
 	
-	public abstract Estadistica getEstadistica();
+	public abstract Estadistica getEstadistica(Vector<Producto> p);
 	
 
 }

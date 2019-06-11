@@ -8,8 +8,9 @@ public class Zona extends Ubicacion{
 	
 
 //Estructura
-	private int altura;											//Se definio la zona como un rectangulo, por lo tanto hereda
-	private int ancho;											//el punto la clase Ubicacion, y por la altura y el ancho genera el rectangulo
+	private String nombre;
+	private double altura;											//Se definio la zona como un rectangulo, por lo tanto hereda
+	private double ancho;											//el punto la clase Ubicacion, y por la altura y el ancho genera el rectangulo
 	
 	
 //Constructor
@@ -20,16 +21,16 @@ public class Zona extends Ubicacion{
 	}
 	
 //Metodos
-	public int getAltura() {
+	public double getAltura() {
 		return altura;
 	}
-	public void setAltura(int altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
 	}
-	public int getAncho() {
+	public double getAncho() {
 		return ancho;
 	}
-	public void setAncho(int ancho) {
+	public void setAncho(double ancho) {
 		this.ancho = ancho;
 	}
 	
@@ -41,12 +42,4 @@ public class Zona extends Ubicacion{
 				aux.getX() + this.getAncho() > p.getX() &&
 				aux.getY() + this.getAltura() >p.getY());
 	}
-
-	@Override
-	public Vector<Estadistica> getEstadisticas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 }

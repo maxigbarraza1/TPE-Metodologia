@@ -33,5 +33,10 @@ public class Punto {
 	public boolean equals (Punto p) {
 		return (p.getX()==this.x && p.getY()==this.y);
 	}
-
+	
+	public double distancia(Punto p) {
+		double a = (p.getX() - this.getX());
+		double b = (p.getY() - this.getY());
+		return Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2));
+	}
 }

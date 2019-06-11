@@ -1,3 +1,5 @@
+package actores;
+
 
 public class EmpMunicipio extends Usuario{
 

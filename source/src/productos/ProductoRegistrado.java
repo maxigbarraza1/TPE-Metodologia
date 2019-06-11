@@ -8,11 +8,19 @@ public class ProductoRegistrado {
 	
 	public ProductoRegistrado(Producto producto_a_usar,int cantidad_produc) {
 		this.fecha.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
-		this.cantidad=cantidad_produc;
+		this.setCantidad(cantidad_produc);
 		this.producto=producto_a_usar;
 	}
 	
 	public double getVolumen() {
 		return this.producto.getVolumen();
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 }
