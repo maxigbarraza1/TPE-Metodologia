@@ -73,4 +73,9 @@ public class PuntoLimpioItinerante{
 	public boolean entraProducto(double volumen) {
 		return ((this.cargamax-this.getVolumenActual())>volumen);
 	}
+
+	public void addProducto(ProductoRegistrado producto) {
+		// TODO Auto-generated method stub
+		
+	}
 }

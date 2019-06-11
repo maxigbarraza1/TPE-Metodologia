@@ -40,4 +40,9 @@ public class Direccion extends Ubicacion {										//Es necesaria la clase call
 		return null;
 	}
 
+	public Object getUbicacion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

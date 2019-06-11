@@ -3,6 +3,7 @@ package funcionalidades;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import actores.EmpMunicipio;
 import actores.PuntoLimpio;
 import actores.PuntoLimpioItinerante;
 import actores.Usuario;
@@ -76,4 +77,22 @@ public class AccesoBaseDatos {
 		}
 		return false;
 	}
+	
+	public void registrarProducto(int id, int cantidad, String direccion) {
+		this.user=(Vecino)user;
+		
+		ProductoRegistrado producto=null;
+		for (int j=0; j<this.prodReciclables.size();j++) 
+			if (this.prodReciclables.get(j).getProducto().getID()==id) {
+				ProductoRegistrado productoagregar = new ProductoRegistrado(this.prodReciclables.get(j).getProducto(), cantidad);
+				producto=productoagregar;
+				}	
+		for (int i=0; i<PLIs.size();i++) {
+			if (PLIs.get(i).getDireccion().getUbicacion().equals(direccion)) {
+				if (PLIs.get(i).entraProducto(producto.getVolumen()))
+					PLIs.get(i).addProducto(producto);
+			}
+		}
+	}
+	
 }

@@ -2,6 +2,8 @@ package productos;
 import java.util.Calendar;
 
 public class ProductoRegistrado {
+
+
 	private int cantidad;
 	private Calendar fecha;
 	private Producto producto;
@@ -22,5 +24,9 @@ public class ProductoRegistrado {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public Producto getProducto() {
+		return this.producto;
 	}
 }
