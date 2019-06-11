@@ -78,21 +78,26 @@ public class AccesoBaseDatos {
 		return false;
 	}
 	
-	public void registrarProducto(int id, int cantidad, String direccion) {
-		this.user=(Vecino)user;
-		
-		ProductoRegistrado producto=null;
-		for (int j=0; j<this.prodReciclables.size();j++) 
-			if (this.prodReciclables.get(j).getProducto().getID()==id) {
-				ProductoRegistrado productoagregar = new ProductoRegistrado(this.prodReciclables.get(j).getProducto(), cantidad);
-				producto=productoagregar;
-				}	
-		for (int i=0; i<PLIs.size();i++) {
-			if (PLIs.get(i).getDireccion().getUbicacion().equals(direccion)) {
-				if (PLIs.get(i).entraProducto(producto.getVolumen()))
-					PLIs.get(i).addProducto(producto);
+	public void registrarProducto(int id, int cantidad, String direccion) {		
+		//Codded by Juancho 2k19
+		//Hago el casting -> busco que la ID sea correcta y que este en los productos reciclables
+		//-> busco que el PLI exista -> agrego el producto al PLI y al vector de productos del vecino
+		if ( user instanceof Vecino) {
+			for (int j=0; j<this.prodReciclables.size();j++) {
+				if (this.prodReciclables.get(j).getProducto().getID()==id) {
+					ProductoRegistrado producto = new ProductoRegistrado(this.prodReciclables.get(j).getProducto(), cantidad);
+					
+					for (int i=0; i<PLIs.size();i++) {
+						if (PLIs.get(i).getDireccion().getUbicacion().equals(direccion)) {
+							if (PLIs.get(i).entraProducto(producto.getVolumen())) {
+								PLIs.get(i).addProducto(producto);
+								((Vecino)this.user).registrarProducto(producto, cantidad);
+			
+								}					
+							}	
+					}
+				}
 			}
 		}
 	}
-	
 }
