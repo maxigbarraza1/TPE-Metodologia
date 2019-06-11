@@ -32,7 +32,7 @@ public class EstadisticaIndividual extends Estadistica{
 	}
 
 	@Override
-	public Estadistica getEstadistica() {
+	public Estadistica getEstadistica(Vector<Producto> p) {
 		// TODO Auto-generated method stub
 		return null;
 	}

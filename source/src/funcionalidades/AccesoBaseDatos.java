@@ -1,5 +1,13 @@
+package funcionalidades;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import actores.PuntoLimpio;
+import actores.PuntoLimpioItinerante;
+import actores.Usuario;
+import actores.Vecino;
+import productos.ProductoRegistrado;
 public class AccesoBaseDatos {
 
 	private HashMap<String, Usuario> usuarios;
