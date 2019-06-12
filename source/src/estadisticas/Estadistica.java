@@ -1,14 +1,15 @@
 package estadisticas;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Vector;
 import java.util.Hashtable;
-import productos.Producto;
+import productos.ProductoRegistrado;
 
-public abstract class Estadistica {
+public class Estadistica {
 	
 //Estructura
 	private Calendar fecha;
+	Hashtable<ProductoRegistrado,Integer> productos;
 
 	
 //Constructor
@@ -25,9 +26,8 @@ public abstract class Estadistica {
 		this.fecha = fecha;
 	}
 	
-	public Hashtable<Producto,Integer> getEstadistica(Vector<Producto> p){
-	
-		
+	public Hashtable<ProductoRegistrado,Integer> getProductos(){
+		return this.productos;
 	}
 
 }

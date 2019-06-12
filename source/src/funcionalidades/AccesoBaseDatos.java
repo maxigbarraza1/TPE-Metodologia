@@ -1,14 +1,14 @@
-	package funcionalidades;
+package funcionalidades;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import actores.Camion;
 import actores.EmpMunicipio;
 import actores.PuntoLimpio;
 import actores.PuntoLimpioItinerante;
 import actores.Usuario;
 import actores.Vecino;
+import estadisticas.Estadistica;
 import productos.Producto;
 import productos.ProductoRegistrado;
 import ubicaciones.Direccion;
@@ -19,8 +19,18 @@ public class AccesoBaseDatos {
 	private ArrayList<PuntoLimpio> PLs;
 	private ArrayList<PuntoLimpioItinerante> PLIs;
 	private String infoONG;
-	private HashMap<String,Camion> camiones; //guarda la patente y el camion
+	private HashMap<String,Camion> camiones; 					//guarda la patente y el camion
+	private ArrayList<Estadistica> estadisticas;				//Lista de estadisticas globales	
 	
+	
+	public ArrayList<Estadistica> getEstadisticas() {
+		return estadisticas;
+	}
+
+	public void setEstadisticas(ArrayList<Estadistica> estadisticas) {
+		this.estadisticas = estadisticas;
+	}
+
 	public AccesoBaseDatos() {
 		this.usuarios = new HashMap<String,Usuario>();
 		this.prodReciclables = new HashMap<Integer,Producto>();
