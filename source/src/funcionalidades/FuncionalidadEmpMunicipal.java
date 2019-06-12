@@ -50,9 +50,9 @@ public class FuncionalidadEmpMunicipal {
 	return aux;
 }
 
-public double getVolumenCargaActual() {
-	
-}
+	public double getVolumenCargaActual(PtoLimpioIt p) {
+		return p.
+	}
 
 public Hashtable<Producto,Integer> getProductosReciclados(){
 	return null;
