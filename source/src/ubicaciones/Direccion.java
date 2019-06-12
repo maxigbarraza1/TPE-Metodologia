@@ -33,7 +33,8 @@ public class Direccion extends Ubicacion {										//Es necesaria la clase call
 	public void setAltura(int altura) {
 		this.altura = altura;
 	}
-	public String toString() {                                                             //Sirve para cuando necesitamos 
+	public String toString() {                                                             //Sirve para cuando necesitamos
+		
 		String devolucion= (this.getCalle()+" "+this.getAltura());                         //comparar dos direcciones, le 
 		return devolucion;                                                                 //pedimos el toString y comparamos
 	}
