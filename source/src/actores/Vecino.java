@@ -1,23 +1,37 @@
 package actores;
+package productos;
 
-import java.util.List;
+import java.util.ArrayList
+import java.util.Calendar;
+import java.util.HashMap;
 
-import productos.Producto;
-import productos.ProductoRegistrado;
+import source.src.estadisticas.CalculoEstadisticas;
+import source.src.productos.Producto;
+import source.src.productos.ProductoRegistrado;
+
 
 public class Vecino extends Usuario {
-	private List<ProductoRegistrado> productos;
+	private ArrayList<ProductoRegistrado> productos;
 	
 	public Vecino(String n, String c, String e) {
 		super(n,c,e);
 	}
 	
-	public void registrarProducto(ProductoRegistrado producto, int cantidad) {
-		//ProductoRegistrado productoagregar = new ProductoRegistrado(producto, cantidad);     //Se hace en Acceso Base de datos
+	public void registrarProducto(ProductoRegistrado producto) {
 		productos.add(producto);
 	}
 	
-	public String getEstadisticasPersonales() {
-		return "Maxi se la come";
+	public HashMap<Producto, Integer> getEstadisticasPersonales(Calendar ini, Calendar fin) { 
+		//Creamos una variable auxiliar de estadisticas con la finalidad de que calcule las estadisticas que se devolveran en las demas clases
+			CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
+			return aux.getEstadisticasPorFecha(this.productos);
+	}
+
+	public ArrayList<ProductoRegistrado> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(ArrayList<ProductoRegistrado> productos) {
+		this.productos = productos;
 	}
 }

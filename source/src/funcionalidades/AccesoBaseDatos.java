@@ -2,6 +2,8 @@ package funcionalidades;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Calendar;
+
 import actores.Camion;
 import actores.EmpMunicipio;
 import actores.PuntoLimpio;
@@ -9,9 +11,11 @@ import actores.PuntoLimpioItinerante;
 import actores.Usuario;
 import actores.Vecino;
 import estadisticas.Estadistica;
+import estadisticas.CalculoEstadisticas;
 import productos.Producto;
 import productos.ProductoRegistrado;
 import ubicaciones.Direccion;
+import ubicaciones.Ubicacion;
 public class AccesoBaseDatos {
 
 	private HashMap<String, Usuario> usuarios;
@@ -37,6 +41,13 @@ public class AccesoBaseDatos {
 		this.PLs=new ArrayList<PuntoLimpio>();
 		this.camiones = new HashMap<String,Camion>();
 		this.PLIs = new ArrayList<PuntoLimpioItinerante>();	
+	}
+	
+	public void cargarHorarios(Calendar inicio, Calendar fin) {
+		for (int i = 0; i<PLs.size();i++) {
+			PLs.get(i).setH_apertura(inicio);
+			PLs.get(i).setH_cierre(fin);
+		}
 	}
 	
 	public HashMap<String, Usuario> getUsuarios() {
@@ -103,25 +114,21 @@ public class AccesoBaseDatos {
 		//-> busco que el PLI exista -> agrego el producto al PLI y al vector de productos del vecino
 		Usuario user= this.usuarios.get(nick);
 		if ( user instanceof Vecino) {
-			for (int j=0; j<this.prodReciclables.size();j++) {
 				if (this.prodReciclables.containsKey(id)) {
-					if(cantidad < 100) {
+					if((cantidad < 100)&&(cantidad>0)) {
 						ProductoRegistrado producto = new ProductoRegistrado(this.prodReciclables.get(id), cantidad);
 						
 						for (int i=0; i<PLIs.size();i++) {
 							if (PLIs.get(i).getDireccion().equals(direccion)) {                        
-								if (PLIs.get(i).entraProducto(producto.getVolumen())) {
-									PLIs.get(i).addProducto(producto);
-									((Vecino)user).registrarProducto(producto, cantidad);
-				
-									}					
-								}	
-						}
+								PLIs.get(i).addProducto(producto);
+								((Vecino)user).registrarProducto(producto);
+								}					
+							}							
 					}
 				}
-			}
 		}
 	}
+	
 	//Busca dentro del mapa de usuarios si el nick ya existe, para que al momento de registarse no 
 	//se encuentren repetidos
 	public boolean verificarUsario(String nick) {
@@ -129,13 +136,39 @@ public class AccesoBaseDatos {
 			return true;
 		return false;
 	}
+	
 	//RegistrarUsuario
 	public void registrarUsuario(String nick,String contraseña,String email) {
 		Vecino aux= new Vecino(nick, contraseña, email);
 		this.usuarios.put(nick, aux);
 	}
+	
 	//verifica la existencia de un producto reciclabe con el id ingresado
 	public boolean verificarIdProducto(int iD) {
 		return (this.prodReciclables.containsKey(iD));
+	}
+	
+	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick, Calendar ini, Calendar fin) {
+		Usuario user= this.usuarios.get(nick);
+		return ((Vecino)user).getEstadisticasPersonales(ini, fin);			
+	}
+	
+	public HashMap<Producto, Integer> getEstadisticasCiudad(String nick, Calendar ini, Calendar fin) {
+		ArrayList<Usuario> users = (ArrayList<Usuario>)this.usuarios.values();
+		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
+		for (int i=0;i<users.size();i++) {
+			productos.addAll(((Vecino)users.get(i)).getProductos());
+		}
+		//Creamos una variable auxiliar de estadisticas con la finalidad de que calcule las estadisticas que se devolveran en las demas clases
+		CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
+		return aux.getEstadisticasPorFecha(productos);
+	}
+	
+	public ArrayList<Ubicacion> getUbicacionCamiones(){
+		ArrayList<Ubicacion> ubicacioncamiones = new ArrayList<Ubicacion>();
+		for (int i=0; i<((ArrayList<Camion>)this.camiones.values()).size();i++) {
+			ubicacioncamiones.add(((ArrayList<Camion>)this.camiones.values()).get(i).getUbicacion());
+		}
+		return ubicacioncamiones;
 	}
 }

@@ -6,9 +6,15 @@ import ubicaciones.Direccion;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD:source/src/actores/PtoLimpioIt.java
 public class PtoLimpioIt{
 	private ArrayList<ProductoRegistrado> productosdentro; 
 	private double cargaMax;
+=======
+public class PuntoLimpioItinerante{
+	private ArrayList<ProductoRegistrado> contenido; 
+	private double cargamax;
+>>>>>>> master:source/src/actores/PuntoLimpioItinerante.java
 	private Calendar h_apertura;
 	private Calendar h_cierre;
 	private Direccion direccion;
@@ -18,7 +24,7 @@ public class PtoLimpioIt{
 		this.h_cierre=h_cierre;
 		this.cargaMax=cargaMax;
 		this.direccion=direccion;
-		this.productosdentro= new ArrayList<ProductoRegistrado>();
+		this.contenido= new ArrayList<ProductoRegistrado>();
 	}
 	
 	public double getCargamax() {
@@ -55,8 +61,8 @@ public class PtoLimpioIt{
 
 	public double getVolumenActual() {
 		double volumen=0;
-		 for (int i=0; i<productosdentro.size();i++){
-			 volumen=volumen+productosdentro.get(i).getVolumen();
+		 for (int i=0; i<contenido.size();i++){
+			 volumen=volumen+contenido.get(i).getVolumen();
 		 }
 		return volumen;
 	}
@@ -70,15 +76,20 @@ public class PtoLimpioIt{
 	}
 	
 	public void vaciar() {
-		for (int j=0; j<productosdentro.size();)
-			this.productosdentro.remove(j);
+		for (int j=0; j<contenido.size();)
+			this.contenido.remove(j);
 	}
 	
+<<<<<<< HEAD:source/src/actores/PtoLimpioIt.java
 	public boolean entraProducto(double volumen) {
 		return ((this.cargaMax-this.getVolumenActual())>volumen);
 	}
 
 	public void addProducto(ProductoRegistrado producto) {
 		productosdentro.add(producto);
+=======
+	public void addProducto(ProductoRegistrado producto) {
+		this.contenido.add(producto);
+>>>>>>> master:source/src/actores/PuntoLimpioItinerante.java
 	}
 }

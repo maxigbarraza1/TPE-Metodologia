@@ -11,12 +11,29 @@ import productos.ProductoRegistrado;
 import ubicaciones.Ubicacion;
 
 public class FuncionalidadEmpMunicipal {
-	
-//Estructura
-	
-//Constructor
-	public FuncionalidadEmpMunicipal() {
-		// TODO Auto-generated constructor stub
+	//Estructura
+
+	AccesoBaseDatos b;
+
+	//Constructor
+
+	public FuncionalidadEmpMunicipal(AccesoBaseDatos b) {		
+		this.b=b;
+	}
+
+	//Metodos
+
+	public void cargarHorarios(Calendar inicio,Calendar fin) {
+		b.cargarHorarios(inicio, fin);
+	}	
+
+	public ArrayList<Estadistica> getEstadisticasHistoricas(AccesoBaseDatos bDatos){
+		return (bDatos.getEstadisticas());
+	}
+
+	public Hashtable<Producto,Integer> getEstadisticasGeolocalizadas(){
+		return null;
+>>>>>>> master
 	}
 	
 //Metodos
@@ -63,6 +80,7 @@ public class FuncionalidadEmpMunicipal {
 	
 	public void notificarPLILleno() {
 
+<<<<<<< HEAD
 	}
 	
 	public Ubicacion getUbicacionPL() {
@@ -80,4 +98,67 @@ public class FuncionalidadEmpMunicipal {
 	
 	
 	
+=======
+	
+	public ArrayList<Estadistica> getEstadisticasMensuales(AccesoBaseDatos bDatos,Calendar walter ){
+		ArrayList<Estadistica> aux= new ArrayList<Estadistica>();
+		if (bDatos.getEstadisticas().isEmpty()) {
+			return null;
+		}
+		else {
+
+			
+		}
+
+	return aux;
+}
+
+	public double getVolumenCargaActual(PtoLimpioIt p) {
+		return p.
+	}
+
+public Hashtable<Producto,Integer> getProductosReciclados(){
+	return null;
+>>>>>>> master
+}
+
+	
+
+	public void notificarPLIVacio() {
+
+		
+
+	}
+
+	
+
+	public void notificarPLILleno() {
+
+		asd
+
+
+
+	}
+
+	
+
+	public Ubicacion getUbicacionPL() {
+
+		return null;
+
+	}
+
+	
+
+	public Ubicacion getUbicacionPLI() {
+
+		return null;
+
+	}
+
+	
+
+	public ArrayList<Ubicacion> getUbicacionCamiones(){
+		return null;
+	}
 }
