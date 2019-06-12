@@ -9,7 +9,7 @@ public class Ubicacion {
 		coordenada.setY(y);
 	}
 
-	public Punto getCoordenada() {
+	public Punto getUbicacion() {
 		return coordenada;											
 	}																
 

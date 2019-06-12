@@ -14,9 +14,9 @@ public class Vecino extends Usuario {
 		super.setContraseña(contraseña);
 	}
 	
-	public void registrarProducto(Producto producto, int cantidad) {
-		ProductoRegistrado productoagregar = new ProductoRegistrado(producto, cantidad);
-		productos.add(productoagregar);
+	public void registrarProducto(ProductoRegistrado producto, int cantidad) {
+		//ProductoRegistrado productoagregar = new ProductoRegistrado(producto, cantidad);     //Se hace en Acceso Base de datos
+		productos.add(producto);
 	}
 	
 	public String getEstadisticasPersonales() {

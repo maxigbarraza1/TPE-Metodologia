@@ -1,4 +1,4 @@
-package funcionalidades;
+	package funcionalidades;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import actores.PuntoLimpioItinerante;
 import actores.Usuario;
 import actores.Vecino;
 import productos.ProductoRegistrado;
+import ubicaciones.Direccion;
 public class AccesoBaseDatos {
 
 	private HashMap<String, Usuario> usuarios;
@@ -63,10 +64,9 @@ public class AccesoBaseDatos {
 	}
 
 	public boolean loginUsuario(String nick, String contraseña) {
-		if (this.usuarios.get(nick).getContraseña().equals(contraseña)) {
-			this.user = new Vecino(nick, contraseña, usuarios.get(nick).getEmail());
-			return true;
-		}
+		if(this.verificarUsario(nick))
+			if(this.usuarios.get(nick).getContraseña().equals(contraseña))
+				return true;
 		return false;
 	}
 	
@@ -78,26 +78,34 @@ public class AccesoBaseDatos {
 		return false;
 	}
 	
-	public void registrarProducto(int id, int cantidad, String direccion) {		
+	public void registrarProducto(int id, int cantidad, Direccion direccion) {		
 		//Codded by Juancho 2k19
 		//Hago el casting -> busco que la ID sea correcta y que este en los productos reciclables
 		//-> busco que el PLI exista -> agrego el producto al PLI y al vector de productos del vecino
 		if ( user instanceof Vecino) {
 			for (int j=0; j<this.prodReciclables.size();j++) {
 				if (this.prodReciclables.get(j).getProducto().getID()==id) {
-					ProductoRegistrado producto = new ProductoRegistrado(this.prodReciclables.get(j).getProducto(), cantidad);
-					
-					for (int i=0; i<PLIs.size();i++) {
-						if (PLIs.get(i).getDireccion().getUbicacion().equals(direccion)) {
-							if (PLIs.get(i).entraProducto(producto.getVolumen())) {
-								PLIs.get(i).addProducto(producto);
-								((Vecino)this.user).registrarProducto(producto, cantidad);
-			
-								}					
-							}	
+					if(cantidad < 100) {
+						ProductoRegistrado producto = new ProductoRegistrado(this.prodReciclables.get(j).getProducto(), cantidad);
+						
+						for (int i=0; i<PLIs.size();i++) {
+							if (PLIs.get(i).getDireccion().equals(direccion)) {                        
+								if (PLIs.get(i).entraProducto(producto.getVolumen())) {
+									PLIs.get(i).addProducto(producto);
+									((Vecino)this.user).registrarProducto(producto, cantidad);
+				
+									}					
+								}	
+						}
 					}
 				}
 			}
 		}
+	}
+	//Busca dentro del mapa de usuarios si el nick ya existe, para que al momento de registarse no 
+	//se encuentren repetidos
+	public boolean verificarUsario(String nick) {
+		if (this.usuarios.containsKey(nick))
+			return true;
 	}
 }
