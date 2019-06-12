@@ -7,7 +7,7 @@ import ubicaciones.Direccion;
 import java.util.ArrayList;
 
 public class PuntoLimpioItinerante{
-	private ArrayList<ProductoRegistrado> productosdentro; 
+	private ArrayList<ProductoRegistrado> contenido; 
 	private double cargamax;
 	private Calendar h_apertura;
 	private Calendar h_cierre;
@@ -18,7 +18,7 @@ public class PuntoLimpioItinerante{
 		this.h_cierre=h_cierre;
 		this.cargamax=cargamax;
 		this.direccion=direccion;
-		this.productosdentro= new ArrayList<ProductoRegistrado>();
+		this.contenido= new ArrayList<ProductoRegistrado>();
 	}
 	
 	public double getCargamax() {
@@ -55,8 +55,8 @@ public class PuntoLimpioItinerante{
 
 	public double getVolumenActual() {
 		double volumen=0;
-		 for (int i=0; i<productosdentro.size();i++){
-			 volumen=volumen+productosdentro.get(i).getVolumen();
+		 for (int i=0; i<contenido.size();i++){
+			 volumen=volumen+contenido.get(i).getVolumen();
 		 }
 		return volumen;
 	}
@@ -66,16 +66,11 @@ public class PuntoLimpioItinerante{
 	}
 	
 	public void vaciar() {
-		for (int j=0; j<productosdentro.size();)
-			this.productosdentro.remove(j);
+		for (int j=0; j<contenido.size();)
+			this.contenido.remove(j);
 	}
 	
-	public boolean entraProducto(double volumen) {
-		return ((this.cargamax-this.getVolumenActual())>volumen);
-	}
-
 	public void addProducto(ProductoRegistrado producto) {
-		// TODO Auto-generated method stub
-		
+		this.contenido.add(producto);
 	}
 }

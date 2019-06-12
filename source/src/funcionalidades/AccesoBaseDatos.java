@@ -93,25 +93,21 @@ public class AccesoBaseDatos {
 		//-> busco que el PLI exista -> agrego el producto al PLI y al vector de productos del vecino
 		Usuario user= this.usuarios.get(nick);
 		if ( user instanceof Vecino) {
-			for (int j=0; j<this.prodReciclables.size();j++) {
 				if (this.prodReciclables.containsKey(id)) {
-					if(cantidad < 100) {
+					if((cantidad < 100)&&(cantidad>0)) {
 						ProductoRegistrado producto = new ProductoRegistrado(this.prodReciclables.get(id), cantidad);
 						
 						for (int i=0; i<PLIs.size();i++) {
 							if (PLIs.get(i).getDireccion().equals(direccion)) {                        
-								if (PLIs.get(i).entraProducto(producto.getVolumen())) {
-									PLIs.get(i).addProducto(producto);
-									((Vecino)user).registrarProducto(producto, cantidad);
-				
-									}					
-								}	
-						}
+								PLIs.get(i).addProducto(producto);
+								((Vecino)user).registrarProducto(producto);
+								}					
+							}							
 					}
 				}
-			}
 		}
 	}
+	
 	//Busca dentro del mapa de usuarios si el nick ya existe, para que al momento de registarse no 
 	//se encuentren repetidos
 	public boolean verificarUsario(String nick) {
@@ -119,13 +115,20 @@ public class AccesoBaseDatos {
 			return true;
 		return false;
 	}
+	
 	//RegistrarUsuario
 	public void registrarUsuario(String nick,String contraseña,String email) {
 		Vecino aux= new Vecino(nick, contraseña, email);
 		this.usuarios.put(nick, aux);
 	}
+	
 	//verifica la existencia de un producto reciclabe con el id ingresado
 	public boolean verificarIdProducto(int iD) {
 		return (this.prodReciclables.containsKey(iD));
+	}
+	
+	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick) {
+		Usuario user= this.usuarios.get(nick);
+		return ((Vecino)user).getEstadisticasPersonales();			
 	}
 }

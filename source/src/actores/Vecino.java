@@ -1,5 +1,6 @@
 package actores;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import productos.Producto;
@@ -14,12 +15,19 @@ public class Vecino extends Usuario {
 		super.setContraseña(contraseña);
 	}
 	
-	public void registrarProducto(ProductoRegistrado producto, int cantidad) {
-		//ProductoRegistrado productoagregar = new ProductoRegistrado(producto, cantidad);     //Se hace en Acceso Base de datos
+	public void registrarProducto(ProductoRegistrado producto) {
 		productos.add(producto);
 	}
 	
-	public String getEstadisticasPersonales() {
-		return "Maxi se la come";
+	public HashMap<Producto, Integer> getEstadisticasPersonales() {
+			HashMap<Producto, Integer> mapaestadisticas = new HashMap<Producto,Integer>();
+			for (int j=0;j<this.productos.size();j++) {
+				if (mapaestadisticas.containsKey(this.productos.get(j).getProducto()))
+					mapaestadisticas.put((this.productos.get(j).getProducto()), 
+											mapaestadisticas.get(this.productos.get(j).getProducto())+1);
+				else
+					mapaestadisticas.put((this.productos.get(j).getProducto()), 1);	
+			}
+			return mapaestadisticas;
 	}
 }

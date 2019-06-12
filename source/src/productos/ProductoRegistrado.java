@@ -29,4 +29,12 @@ public class ProductoRegistrado {
 	public Producto getProducto() {
 		return this.producto;
 	}
+
+	public Calendar getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Calendar fecha) {
+		this.fecha = fecha;
+	}
 }
