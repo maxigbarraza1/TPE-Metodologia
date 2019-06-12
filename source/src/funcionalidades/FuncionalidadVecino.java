@@ -5,8 +5,14 @@ import actores.PuntoLimpioItinerante;
 import funcionalidades.AccesoBaseDatos;
 
 public class FuncionalidadVecino {
+	
+//Estructura
 	private AccesoBaseDatos b;
 	private String nick;
+	
+//Constructor	
+
+///Metodos
 	public FuncionalidadVecino(AccesoBaseDatos b) {
 		this.b=b;
 	}
@@ -22,8 +28,12 @@ public class FuncionalidadVecino {
 		}
 		return false;
 	}
+	
 	public void registrarProducto(int id,int cantidad) {
-		if (b.verificarIdProducto(id))
+		if (b.verificarIdProducto(id)) {
 			ArrayList<PuntoLimpioItinerante> aux= b.getPtosRecoleccion();
+			
+		}
 	}
+	
 }

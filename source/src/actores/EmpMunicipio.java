@@ -9,4 +9,7 @@ public class EmpMunicipio extends Usuario{
 		super.setContraseña(contraseña);
 	}
 
+	public boolean notificarPLIVacio(PuntoLimpioItinerante p) {
+		return true;
+	}
 }

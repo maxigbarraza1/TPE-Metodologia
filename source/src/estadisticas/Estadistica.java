@@ -2,7 +2,7 @@ package estadisticas;
 
 import java.util.Calendar;
 import java.util.Vector;
-
+import java.util.Hashtable;
 import productos.Producto;
 
 public abstract class Estadistica {
@@ -25,7 +25,9 @@ public abstract class Estadistica {
 		this.fecha = fecha;
 	}
 	
-	public abstract Estadistica getEstadistica(Vector<Producto> p);
+	public Hashtable<Producto,Integer> getEstadistica(Vector<Producto> p){
 	
+		
+	}
 
 }
