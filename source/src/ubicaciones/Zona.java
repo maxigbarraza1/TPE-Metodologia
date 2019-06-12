@@ -36,7 +36,7 @@ public class Zona extends Ubicacion{
 	
 	//Para ver si un punto esta dentro de nuestra zona
 	public boolean contains (Punto p) {
-		Punto aux=this.getCoordenada();
+		Punto aux=this.getUbicacion();
 		return (aux.getX() < p.getX() &&
 				aux.getY() < p.getY() &&
 				aux.getX() + this.getAncho() > p.getX() &&
