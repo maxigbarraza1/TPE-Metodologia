@@ -1,5 +1,6 @@
 package funcionalidades;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import actores.PuntoLimpioItinerante;
 import ubicaciones.Direccion;
@@ -37,4 +38,21 @@ public class FuncionalidadVecino {
 	public HashMap<Producto, Integer> getEstadisticasPersonales() {
 		return b.getEstadisticasPersonales(this.nick);
 	}
+	
+	public HashMap<Integer, Producto> getProductosReciclables(){
+		return b.getProdReciclables();
+	}
+	
+	public String getEstadisticasONG() {
+		return b.getInfoONG(); 
+	}
+	
+	public HashMap<Producto, Integer> getEstadisticasDeLaCiudad() {
+		
+		Calendar inicio;
+		Calendar fin;
+		//interfaz.getFechas(inicio, fin)
+		return b.getEstadisticasCiudad(this.nick, inicio, fin);
+	}
+	
 }

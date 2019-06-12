@@ -2,13 +2,14 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Calendar;
 import actores.Camion;
 import actores.EmpMunicipio;
 import actores.PuntoLimpio;
 import actores.PuntoLimpioItinerante;
 import actores.Usuario;
 import actores.Vecino;
+import estadisticas.CalculoEstadisticas;
 import productos.Producto;
 import productos.ProductoRegistrado;
 import ubicaciones.Direccion;
@@ -127,8 +128,19 @@ public class AccesoBaseDatos {
 		return (this.prodReciclables.containsKey(iD));
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick) {
+	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick, Calendar ini, Calendar fin) {
 		Usuario user= this.usuarios.get(nick);
-		return ((Vecino)user).getEstadisticasPersonales();			
+		return ((Vecino)user).getEstadisticasPersonales(ini, fin);			
+	}
+	
+	public HashMap<Producto, Integer> getEstadisticasCiudad(String nick, Calendar ini, Calendar fin) {
+		ArrayList<Usuario> users = (ArrayList<Usuario>)this.usuarios.values();
+		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
+		for (int i=0;i<users.size();i++) {
+			productos.addAll(((Vecino)users.get(i)).getProductos());
+		}
+		//Creamos una variable auxiliar de estadisticas con la finalidad de que calcule las estadisticas que se devolveran en las demas clases
+		CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
+		return aux.getEstadisticasPorFecha(productos);
 	}
 }

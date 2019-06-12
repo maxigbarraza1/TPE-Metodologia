@@ -1,13 +1,17 @@
 package actores;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
+import estadisticas.CalculoEstadisticas;
+
+import java.util.Calendar;
 import productos.Producto;
 import productos.ProductoRegistrado;
 
+
 public class Vecino extends Usuario {
-	private Vector<ProductoRegistrado> productos;
+	private ArrayList<ProductoRegistrado> productos;
 	
 	public Vecino(String nick, String contraseña, String email) {
 		super.setNick(nick);
@@ -19,15 +23,17 @@ public class Vecino extends Usuario {
 		productos.add(producto);
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasPersonales() {
-			HashMap<Producto, Integer> mapaestadisticas = new HashMap<Producto,Integer>();
-			for (int j=0;j<this.productos.size();j++) {
-				if (mapaestadisticas.containsKey(this.productos.get(j).getProducto()))
-					mapaestadisticas.put((this.productos.get(j).getProducto()), 
-											mapaestadisticas.get(this.productos.get(j).getProducto())+1);
-				else
-					mapaestadisticas.put((this.productos.get(j).getProducto()), 1);	
-			}
-			return mapaestadisticas;
+	public HashMap<Producto, Integer> getEstadisticasPersonales(Calendar ini, Calendar fin) { 
+		//Creamos una variable auxiliar de estadisticas con la finalidad de que calcule las estadisticas que se devolveran en las demas clases
+			CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
+			return aux.getEstadisticasPorFecha(this.productos);
+	}
+
+	public ArrayList<ProductoRegistrado> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(ArrayList<ProductoRegistrado> productos) {
+		this.productos = productos;
 	}
 }
