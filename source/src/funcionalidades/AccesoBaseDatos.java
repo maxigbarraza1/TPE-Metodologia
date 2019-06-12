@@ -13,6 +13,7 @@ import estadisticas.CalculoEstadisticas;
 import productos.Producto;
 import productos.ProductoRegistrado;
 import ubicaciones.Direccion;
+import ubicaciones.Ubicacion;
 public class AccesoBaseDatos {
 
 	private HashMap<String, Usuario> usuarios;
@@ -142,5 +143,13 @@ public class AccesoBaseDatos {
 		//Creamos una variable auxiliar de estadisticas con la finalidad de que calcule las estadisticas que se devolveran en las demas clases
 		CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
 		return aux.getEstadisticasPorFecha(productos);
+	}
+	
+	public ArrayList<Ubicacion> getUbicacionCamiones(){
+		ArrayList<Ubicacion> ubicacioncamiones = new ArrayList<Ubicacion>();
+		for (int i=0; i<((ArrayList<Camion>)this.camiones.values()).size();i++) {
+			ubicacioncamiones.add(((ArrayList<Camion>)this.camiones.values()).get(i).getUbicacion());
+		}
+		return ubicacioncamiones;
 	}
 }

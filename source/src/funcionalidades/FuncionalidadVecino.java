@@ -55,4 +55,11 @@ public class FuncionalidadVecino {
 		return b.getEstadisticasCiudad(this.nick, inicio, fin);
 	}
 	
+	public List<Ubicacion> getPtosDeRecoleccion(){
+		return b.getPtosRecoleccion();
+	}
+	
+	public List<Ubicacion> getUbicacionCamiones(){
+		
+	}
 }
