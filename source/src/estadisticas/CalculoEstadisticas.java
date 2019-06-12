@@ -17,8 +17,15 @@ public class CalculoEstadisticas {
 	}
 	
 	public HashMap<Producto, Integer> getEstadisticasPorFecha(ArrayList<ProductoRegistrado> p) {
-		for (int i=0; i<p.size();i++) {
-			if (p.get(i).getFecha())
+		HashMap<Producto, Integer> stats = new HashMap<Producto, Integer>();
+		for (int i=0; i<p.size();i++) {	//Recorro toda la lista p
+			if ((p.get(i).getFecha().before(fechafin))&&(p.get(i).getFecha().after(fechainicio))) { //Si esta dentro de las fechas
+				if (stats.containsKey(p.get(i))) { //Si el mapa ya contiene el producto a agregar
+					stats.put(p.get(i).getProducto(), stats.get(p.get(i))+p.get(i).getCantidad()); //Agrego el producto y sumo las cantidades
+				}
+				else //si no...
+					stats.put(p.get(i).getProducto(),p.get(i).getCantidad()); //Agrego el producto con su cantidad correspondiente
+			}
 		}
 	}
 }
