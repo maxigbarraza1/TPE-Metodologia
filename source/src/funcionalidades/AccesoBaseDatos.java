@@ -1,8 +1,9 @@
-	package funcionalidades;
+package funcionalidades;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Calendar;
+
 import actores.Camion;
 import actores.EmpMunicipio;
 import actores.PuntoLimpio;
@@ -29,6 +30,13 @@ public class AccesoBaseDatos {
 		this.PLs=new ArrayList<PuntoLimpio>();
 		this.camiones = new HashMap<String,Camion>();
 		this.PLIs = new ArrayList<PuntoLimpioItinerante>();	
+	}
+	
+	public void cargarHorarios(Calendar inicio, Calendar fin) {
+		for (int i = 0; i<PLs.size();i++) {
+			PLs.get(i).setH_apertura(inicio);
+			PLs.get(i).setH_cierre(fin);
+		}
 	}
 	
 	public HashMap<String, Usuario> getUsuarios() {
