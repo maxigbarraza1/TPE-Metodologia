@@ -13,15 +13,15 @@ import ubicaciones.Ubicacion;
 public class FuncionalidadEmpMunicipal {
 	
 //Estructura
-	
+	AccesoBaseDatos b;
 //Constructor
-	public FuncionalidadEmpMunicipal() {
-		// TODO Auto-generated constructor stub
+	public FuncionalidadEmpMunicipal(AccesoBaseDatos b) {
+		this.b=b;
 	}
 	
 //Metodos
 	public void cargarHorarios(Calendar inicio,Calendar fin) {
-		
+		b.cargarHorarios(inicio, fin);
 	}	
 	
 	public ArrayList<Estadistica> getEstadisticasHistoricas(AccesoBaseDatos bDatos){
@@ -44,7 +44,7 @@ public class FuncionalidadEmpMunicipal {
 	}
 	
 	public double getVolumenCargaActual() {
-		return 1;
+		
 	}
 	
 	

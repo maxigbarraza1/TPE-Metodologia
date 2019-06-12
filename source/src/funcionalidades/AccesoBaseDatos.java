@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Calendar;
 
 import actores.Camion;
 import actores.EmpMunicipio;
@@ -29,6 +30,12 @@ public class AccesoBaseDatos {
 		this.PLIs = new ArrayList<PuntoLimpioItinerante>();	
 	}
 	
+	public void cargarHorarios(Calendar inicio, Calendar fin) {
+		for (int i = 0; i<PLs.size();i++) {
+			PLs.get(i).setH_apertura(inicio);
+			PLs.get(i).setH_cierre(fin);
+		}
+	}
 	public HashMap<String, Usuario> getUsuarios() {
 		return usuarios;
 	}
