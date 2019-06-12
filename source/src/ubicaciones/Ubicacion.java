@@ -15,6 +15,5 @@ public class Ubicacion {
 
 	public void setCoordenada(Punto coordenada) {
 		this.coordenada = coordenada;
-		asdasdasdasdas
 	}
 }
