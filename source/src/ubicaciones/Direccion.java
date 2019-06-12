@@ -4,9 +4,9 @@ import java.util.Vector;
 
 import estadisticas.Estadistica;
 
-public class Direccion extends Ubicacion {										//Es necesaria la clase calle? Podriamos tomar como manzana
-																				//y dejar solo la clase zona respetando la forma del rectangulo
-//Estructura																	// Aunque si queremos mostrar la ubicacion del camion la tenemos que tener
+public class Direccion extends Ubicacion {	//Es necesaria la clase calle? Podriamos tomar como manzana
+										    //y dejar solo la clase zona respetando la forma del rectangulo
+//Estructura							    // Aunque si queremos mostrar la ubicacion del camion la tenemos que tener
 	private String calle;
 	private int altura;
 	
@@ -33,24 +33,9 @@ public class Direccion extends Ubicacion {										//Es necesaria la clase call
 	public void setAltura(int altura) {
 		this.altura = altura;
 	}
-	public String toString() {                                                             //Sirve para cuando necesitamos
-		
-		String devolucion= (this.getCalle()+" "+this.getAltura());                         //comparar dos direcciones, le 
-		return devolucion;                                                                 //pedimos el toString y comparamos
+	
+	public String getDireccion() {
+		return (this.calle + " " + this.altura);
 	}
-	public boolean equals(Direccion d) {
-		if((d.getAltura() == this.getAltura()) && (d.getCalle() == this.getCalle()))
-			return true;
-		return false;
-	}
-//	public Vector<Estadistica> getEstadisticas() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	public Object getUbicacion() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

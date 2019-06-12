@@ -11,7 +11,7 @@ public class Punto {
 	public Punto(double CordX,double CordY) {
 		this.x=CordX;
 		this.y=CordY;
-	}
+	} 
 
 //Metodos
 	public double getX() {

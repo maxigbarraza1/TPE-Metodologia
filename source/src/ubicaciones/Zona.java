@@ -9,8 +9,8 @@ public class Zona extends Ubicacion{
 
 //Estructura
 	private String nombre;
-	private double altura;											//Se definio la zona como un rectangulo, por lo tanto hereda
-	private double ancho;											//el punto la clase Ubicacion, y por la altura y el ancho genera el rectangulo
+	private double altura;	//Se definio la zona como un rectangulo, por lo tanto hereda
+	private double ancho;	//el punto la clase Ubicacion, y por la altura y el ancho genera el rectangulo
 	
 	
 //Constructor
@@ -36,7 +36,7 @@ public class Zona extends Ubicacion{
 	
 	//Para ver si un punto esta dentro de nuestra zona
 	public boolean contains (Punto p) {
-		Punto aux=this.getUbicacion();
+		Punto aux=this.getCoordenada();
 		return (aux.getX() < p.getX() &&
 				aux.getY() < p.getY() &&
 				aux.getX() + this.getAncho() > p.getX() &&

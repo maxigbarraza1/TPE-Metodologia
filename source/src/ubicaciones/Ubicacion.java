@@ -9,11 +9,15 @@ public class Ubicacion {
 		coordenada.setY(y);
 	}
 
-	public Punto getUbicacion() {
+	public Punto getCoordenada() {
 		return coordenada;											
 	}																
 
 	public void setCoordenada(Punto coordenada) {
 		this.coordenada = coordenada;
+	}
+	
+	public Punto getUbicacion() {
+		return coordenada;
 	}
 }
