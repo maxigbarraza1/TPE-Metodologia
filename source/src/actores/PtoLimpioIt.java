@@ -6,27 +6,27 @@ import ubicaciones.Direccion;
 
 import java.util.ArrayList;
 
-public class PuntoLimpioItinerante{
+public class PtoLimpioIt{
 	private ArrayList<ProductoRegistrado> productosdentro; 
-	private double cargamax;
+	private double cargaMax;
 	private Calendar h_apertura;
 	private Calendar h_cierre;
 	private Direccion direccion;
 	
-	public PuntoLimpioItinerante(double cargamax, Calendar h_apertura, Calendar h_cierre, Direccion direccion) {
+	public PtoLimpioIt(double cargaMax, Calendar h_apertura, Calendar h_cierre, Direccion direccion) {
 		this.h_apertura=h_apertura;
 		this.h_cierre=h_cierre;
-		this.cargamax=cargamax;
+		this.cargaMax=cargaMax;
 		this.direccion=direccion;
 		this.productosdentro= new ArrayList<ProductoRegistrado>();
 	}
 	
 	public double getCargamax() {
-		return cargamax;
+		return cargaMax;
 	}
 
-	public void setCargamax(double cargamax) {
-		this.cargamax = cargamax;
+	public void setCargamax(double cargaMax) {
+		this.cargaMax = cargaMax;
 	}
 
 	public Calendar getH_apertura() {
@@ -61,8 +61,12 @@ public class PuntoLimpioItinerante{
 		return volumen;
 	}
 	
+	public boolean estaVacio() {
+		return productosdentro.isEmpty();
+	}
+	
 	public boolean estaLleno() {
-		return (this.getVolumenActual()>=this.cargamax);
+		return (this.getVolumenActual()>=this.cargaMax);
 	}
 	
 	public void vaciar() {
@@ -71,11 +75,10 @@ public class PuntoLimpioItinerante{
 	}
 	
 	public boolean entraProducto(double volumen) {
-		return ((this.cargamax-this.getVolumenActual())>volumen);
+		return ((this.cargaMax-this.getVolumenActual())>volumen);
 	}
 
 	public void addProducto(ProductoRegistrado producto) {
-		// TODO Auto-generated method stub
-		
+		productosdentro.add(producto);
 	}
 }

@@ -4,6 +4,12 @@ public abstract class Usuario {
 	private String contraseña;
 	private String email;
 	
+	protected Usuario(String n, String c, String e) {
+		this.nick = n;
+		this.contraseña = c;
+		this.email = e;
+	}
+	
 	public String getNick() {
 		return nick;
 	}

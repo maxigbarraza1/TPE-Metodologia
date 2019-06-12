@@ -3,13 +3,11 @@ package actores;
 
 public class EmpMunicipio extends Usuario{
 
-	public EmpMunicipio(String nick, String contraseña, String email) {
-		super.setNick(nick);
-		super.setEmail(email);
-		super.setContraseña(contraseña);
+	public EmpMunicipio(String n, String c, String e) {
+		super(n,c,e);
 	}
 
-	public boolean notificarPLIVacio(PuntoLimpioItinerante p) {
-		return true;
+	public boolean notificarPLIVacio(PtoLimpioIt p) {
+		return p.estaVacio();
 	}
 }

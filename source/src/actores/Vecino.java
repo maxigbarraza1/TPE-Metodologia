@@ -1,17 +1,15 @@
 package actores;
 
-import java.util.Vector;
+import java.util.List;
 
 import productos.Producto;
 import productos.ProductoRegistrado;
 
 public class Vecino extends Usuario {
-	private Vector<ProductoRegistrado> productos;
+	private List<ProductoRegistrado> productos;
 	
-	public Vecino(String nick, String contraseña, String email) {
-		super.setNick(nick);
-		super.setEmail(email);
-		super.setContraseña(contraseña);
+	public Vecino(String n, String c, String e) {
+		super(n,c,e);
 	}
 	
 	public void registrarProducto(ProductoRegistrado producto, int cantidad) {
