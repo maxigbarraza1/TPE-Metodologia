@@ -3,12 +3,14 @@ package funcionalidades;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Hashtable;
-
-import estadisticas.Estadistica;
+import actores.Usuario;
+import actores.Vecino;
 import productos.Producto;
 import productos.ProductoRegistrado;
 import ubicaciones.Ubicacion;
+import estadisticas.CalculoEstadisticas;
 
 
 public class FuncionalidadEmpMunicipal {
@@ -28,12 +30,26 @@ public class FuncionalidadEmpMunicipal {
 		b.cargarHorarios(inicio, fin);
 	}	
 
-	public ArrayList<Estadistica> getEstadisticasHistoricas(AccesoBaseDatos bDatos){
-		return (bDatos.getEstadisticas());
+	public HashMap<Producto,Integer> getEstadisticasHistoricas(){
+		Calendar fin;
+		Calendar inicio;
+		ArrayList<Usuario> users = (ArrayList<Usuario>)b.getUsuarios().values();
+		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
+		for (int i=0;i<users.size();i++) {
+			productos.addAll(((Vecino)users.get(i)).getProductos());
+		}
+		CalculoEstadisticas aux=new CalculoEstadisticas(inicio,fin.getTime());
+		
+		return (aux.getEstadisticasPorFecha(productos));
+		
 	}
 
-	public Hashtable<Producto,Integer> getEstadisticasGeolocalizadas(){
-		return null;
+	public Hashtable<Producto,Integer> getEstadisticasGeolocalizadas(Zona z){
+		ArrayList<Usuario> users = (ArrayList<Usuario>)b.getUsuarios().values();
+		for (int i=0;i<users.size();i++) {
+			if ((Vecino)users.get(i)i)
+		}
+
 	}
 
 	

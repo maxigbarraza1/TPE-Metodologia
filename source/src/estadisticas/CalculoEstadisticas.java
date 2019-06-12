@@ -1,10 +1,11 @@
+package estadisticas;
 import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import productos.Producto;
 import productos.ProductoRegistrado;
-package estadisticas;
+
 
 
 public class CalculoEstadisticas {
@@ -27,5 +28,6 @@ public class CalculoEstadisticas {
 					stats.put(p.get(i).getProducto(),p.get(i).getCantidad()); //Agrego el producto con su cantidad correspondiente
 			}
 		}
+		return stats;
 	}
 }
