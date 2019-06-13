@@ -69,6 +69,9 @@ public class FuncionalidadEmpMunicipal {
 	}
 
 	public double getVolumenCargaActual(PtoLimpioIt p) {
+		// interfaz.elegirPLI(b.getPtosRecoleccion()); //La interfaz se dedica a buscar
+		// y devolver el PLI donde se depositara la carga
+		PtoLimpioIt p; //= interfaz.getPLIelegido()
 		return b.getVolumenCargaActual(p);
 	}
 
@@ -90,14 +93,14 @@ public class FuncionalidadEmpMunicipal {
 		return b.notificarPLILleno(p);
 	}
 
-	public Direccion getUbicacionPL() {
+	public Direccion getDireccionPL() {
 		// interfaz.elegirPL(b.getPtosRecoleccion()); //La interfaz se dedica a buscar
 		// y devolver el PL donde se depositara la carga
 		PuntoLimpio p; //= interfaz.getPLelegido()
 		return p.getDireccion();
 	}
 
-	public Direccion getUbicacionPLI(PtoLimpioIt p) {
+	public Direccion getDireccionPLI(PtoLimpioIt p) {
 		// interfaz.elegirPL(b.getPtosRecoleccion()); //La interfaz se dedica a buscar
 		// y devolver el PL donde se depositara la carga
 		PuntoLimpio p; //= interfaz.getPLelegido()
