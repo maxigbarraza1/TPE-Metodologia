@@ -56,7 +56,7 @@ public class FuncionalidadEmpMunicipal {
 		return (retorno.getEstadisticasPorFecha(productos));
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasMensuales(AccesoBaseDatos bDatos, Calendar mes) {
+	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar mes) {
 		ArrayList<Usuario> users = (ArrayList<Usuario>) b.getUsuarios().values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
 		for (int i = 0; i < users.size(); i++) {
