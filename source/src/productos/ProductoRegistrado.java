@@ -37,4 +37,8 @@ public class ProductoRegistrado {
 	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
+	
+	public boolean equals (ProductoRegistrado p) {
+		return ((this.producto.getID()==p.getProducto().getID()) && (this.getCantidad()==p.getCantidad()) && (this.fecha == p.getFecha()));
+	}
 }

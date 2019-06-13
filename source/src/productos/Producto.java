@@ -58,5 +58,9 @@ public class Producto {
 	public void setLargo(double largo) {
 		this.largo = largo;
 	}
+	
+	public boolean equals (Producto p) {
+		return (this.ID==p.getID());
+	}
 
 }
