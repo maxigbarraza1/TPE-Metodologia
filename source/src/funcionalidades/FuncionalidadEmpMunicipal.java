@@ -7,12 +7,15 @@ import java.util.Hashtable;
 
 import actores.Usuario;
 import actores.Vecino;
+import actores.PtoLimpioIt;
+import actores.PuntoLimpio;
 import estadisticas.CalculoEstadisticas;
 import productos.Producto;
 import productos.ProductoRegistrado;
 import ubicaciones.Punto;
 import ubicaciones.Ubicacion;
 import ubicaciones.Zona;
+import ubicaciones.Direccion;
 
 public class FuncionalidadEmpMunicipal {
 
@@ -65,35 +68,31 @@ public class FuncionalidadEmpMunicipal {
 		return (retorno.getEstadisticasPorFecha(productos));
 	}
 
-	public double getVolumenCargaActual() {
-
+	public double getVolumenCargaActual(PtoLimpioIt p) {
+		return b.getVolumenCargaActual(p);
 	}
 
 	public Hashtable<Producto, Integer> getProductosReciclados() {
 		return null;
 	}
 
-	public void notificarPLIVacio() {
-
+	public boolean notificarPLIVacio(PtoLimpioIt p) {
+		return b.notificarPLIVacio(p);
 	}
 
-	public void notificarPLILleno() {
-
+	public boolean notificarPLILleno(PtoLimpioIt p) {
+		return b.notificarPLILleno(p);
 	}
 
-	public Ubicacion getUbicacionPL() {
-
-		return null;
-
+	public Direccion getUbicacionPL(PuntoLimpio p) {
+		return p.getDireccion();
 	}
 
-	public Ubicacion getUbicacionPLI() {
-
-		return null;
-
+	public Direccion getUbicacionPLI(PtoLimpioIt p) {
+		return p.getDireccion();
 	}
 
 	public ArrayList<Ubicacion> getUbicacionCamiones() {
-		return null;
+		return b.getUbicacionCamiones();
 	}
 }

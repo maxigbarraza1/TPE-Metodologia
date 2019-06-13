@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import actores.Camion;
 import actores.PuntoLimpio;
-import actores.PuntoLimpioItinerante;
+import actores.PtoLimpioIt;
 import actores.Usuario;
 import actores.Vecino;
 import estadisticas.CalculoEstadisticas;
@@ -20,7 +20,7 @@ public class AccesoBaseDatos {
 	private HashMap<String, Usuario> usuarios;
 	private HashMap<Integer, Producto> prodReciclables; // se cambio el tipo a hashtmap para facilitar las busquedas
 	private ArrayList<PuntoLimpio> PLs;
-	private ArrayList<PuntoLimpioItinerante> PLIs;
+	private ArrayList<PtoLimpioIt> PLIs;
 	private String infoONG;
 	private HashMap<String, Camion> camiones; // guarda la patente y el camion
 
@@ -29,7 +29,7 @@ public class AccesoBaseDatos {
 		this.prodReciclables = new HashMap<Integer, Producto>();
 		this.PLs = new ArrayList<PuntoLimpio>();
 		this.camiones = new HashMap<String, Camion>();
-		this.PLIs = new ArrayList<PuntoLimpioItinerante>();
+		this.PLIs = new ArrayList<PtoLimpioIt>();
 	}
 
 	public void cargarHorarios(Calendar inicio, Calendar fin) {
@@ -59,7 +59,7 @@ public class AccesoBaseDatos {
 		this.prodReciclables.put(p.getID(), p);
 	}
 
-	public ArrayList<PuntoLimpioItinerante> getPtosRecoleccion() {
+	public ArrayList<PtoLimpioIt> getPtosRecoleccion() {
 		return this.PLIs;
 	}
 
@@ -67,7 +67,7 @@ public class AccesoBaseDatos {
 		PLs = pLs;
 	}
 
-	public void setPLIs(ArrayList<PuntoLimpioItinerante> pLIs) {
+	public void setPLIs(ArrayList<PtoLimpioIt> pLIs) {
 		PLIs = pLIs;
 	}
 
@@ -132,9 +132,9 @@ public class AccesoBaseDatos {
 	}
 
 	// RegistrarUsuario
-	public void registrarUsuario(String nick, String contraseña, String email) {
-		Vecino aux = new Vecino(nick, contraseña, email);
-		this.usuarios.put(nick, aux);
+	public void registrarUsuario(String n, String c, String e, Ubicacion u) {
+		Vecino aux = new Vecino(n,c,e,u);
+		this.usuarios.put(n, aux);
 	}
 
 	// verifica la existencia de un producto reciclabe con el id ingresado
@@ -165,5 +165,25 @@ public class AccesoBaseDatos {
 			ubicacioncamiones.add(((ArrayList<Camion>) this.camiones.values()).get(i).getUbicacion());
 		}
 		return ubicacioncamiones;
+	}
+	
+	public ArrayList<Direccion> getDireccionPLIs() {
+		ArrayList<Direccion> l = new ArrayList<Direccion>();
+		for (int i=0;i<PLIs.size();i++) {
+			l.add(PLIs.get(i).getDireccion());
+		}
+		return l;
+	}
+	
+	public double getVolumenCargaActual(PtoLimpioIt p) {
+		return p.getVolumenActual();
+	}
+	
+	public boolean notificarPLIVacio(PtoLimpioIt p) {
+		return p.estaVacio();
+	}
+	
+	public boolean notificarPLILleno(PtoLimpioIt p) {
+		return p.estaLleno();
 	}
 }

@@ -1,6 +1,7 @@
 package funcionalidades;
 
 import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import productos.Producto;
@@ -15,9 +16,9 @@ public class FuncionalidadVecino {
 		this.b = b;
 	}
 
-	public void registrar(String nick, String contraseña, String email) {
-		if (!b.verificarUsario(nick))
-			b.registrarUsuario(nick, contraseña, email);
+	public void registrar(String n, String c, String e, Ubicacion u) {
+		if (!b.verificarUsario(n))
+			b.registrarUsuario(n,c,e,u);
 	}
 
 	public boolean login(String nick, String contraseña) { // Verifica con la base de datos que los
@@ -39,7 +40,8 @@ public class FuncionalidadVecino {
 	}
 
 	public HashMap<Producto, Integer> getEstadisticasPersonales() {
-		return b.getEstadisticasPersonales(this.nick);
+		// interfaz.getFechas(inicio, fin)
+		return b.getEstadisticasPersonales(this.nick, inicio, fin);
 	}
 
 	public HashMap<Integer, Producto> getProductosReciclables() {
@@ -58,11 +60,11 @@ public class FuncionalidadVecino {
 		return b.getEstadisticasCiudad(this.nick, inicio, fin);
 	}
 
-	public List<Ubicacion> getPtosDeRecoleccion() {
-		return b.getPtosRecoleccion();
+	public ArrayList<Direccion> getDireccionPLIs() {
+		return b.getDireccionPLIs();
 	}
 
-	public List<Ubicacion> getUbicacionCamiones() {
-
+	public ArrayList<Ubicacion> getUbicacionCamiones() {
+		return b.getUbicacionCamiones();
 	}
 }
