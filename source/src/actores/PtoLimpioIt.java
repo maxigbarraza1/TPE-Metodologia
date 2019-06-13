@@ -6,27 +6,27 @@ import java.util.Calendar;
 import productos.ProductoRegistrado;
 import ubicaciones.Direccion;
 
-public class PuntoLimpioItinerante {
-	private ArrayList<ProductoRegistrado> contenido;
-	private double cargamax;
+public class PtoLimpioIt {
+	private ArrayList<ProductoRegistrado> productosdentro;
+	private double cargaMax;
 	private Calendar h_apertura;
 	private Calendar h_cierre;
 	private Direccion direccion;
 
-	public PuntoLimpioItinerante(double cargamax, Calendar h_apertura, Calendar h_cierre, Direccion direccion) {
+	public PtoLimpioIt(double cargaMax, Calendar h_apertura, Calendar h_cierre, Direccion direccion) {
 		this.h_apertura = h_apertura;
 		this.h_cierre = h_cierre;
-		this.cargamax = cargamax;
+		this.cargaMax = cargaMax;
 		this.direccion = direccion;
-		this.contenido = new ArrayList<ProductoRegistrado>();
+		this.productosdentro = new ArrayList<ProductoRegistrado>();
 	}
 
 	public double getCargamax() {
-		return cargamax;
+		return cargaMax;
 	}
 
 	public void setCargamax(double cargamax) {
-		this.cargamax = cargamax;
+		this.cargaMax = cargamax;
 	}
 
 	public Calendar getH_apertura() {
@@ -55,22 +55,30 @@ public class PuntoLimpioItinerante {
 
 	public double getVolumenActual() {
 		double volumen = 0;
-		for (int i = 0; i < contenido.size(); i++) {
-			volumen = volumen + contenido.get(i).getVolumen();
+		for (int i = 0; i < productosdentro.size(); i++) {
+			volumen = volumen + productosdentro.get(i).getVolumen();
 		}
 		return volumen;
 	}
+	
+	public boolean estaVacio() {
+		return productosdentro.isEmpty();
+	}
 
 	public boolean estaLleno() {
-		return (this.getVolumenActual() >= this.cargamax);
+		return (this.getVolumenActual() >= this.cargaMax);
 	}
 
 	public void vaciar() {
-		for (int j = 0; j < contenido.size();)
-			this.contenido.remove(j);
+		for (int j = 0; j < productosdentro.size();)
+			this.productosdentro.remove(j);
+	}
+	
+	public boolean entraProducto(double v) {
+		return ((this.getVolumenActual()+v)<=this.cargaMax);
 	}
 
 	public void addProducto(ProductoRegistrado producto) {
-		this.contenido.add(producto);
+		this.productosdentro.add(producto);
 	}
 }

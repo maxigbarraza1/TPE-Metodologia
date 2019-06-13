@@ -13,10 +13,8 @@ public class Vecino extends Usuario {
 	private ArrayList<ProductoRegistrado> productos;
 	private Ubicacion ubicacion;
 
-	public Vecino(String nick, String contraseña, String email, Ubicacion u) {
-		super.setNick(nick);
-		super.setEmail(email);
-		super.setContraseña(contraseña);
+	public Vecino(String n, String c, String e, Ubicacion u) {
+		super(n,c,e);
 		this.ubicacion = u;
 	}
 

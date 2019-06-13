@@ -10,8 +10,10 @@ public class PuntoLimpio {
 	private Calendar h_apertura;
 	private Calendar h_cierre;
 
-	public PuntoLimpio() {
-		// TODO Auto-generated constructor stub
+	public PuntoLimpio(Direccion d, Calendar h1, Calendar h2) {
+		this.direccion = d;
+		this.h_apertura = h1;
+		this.h_cierre = h2;
 	}
 
 	public Direccion getDireccion() {
