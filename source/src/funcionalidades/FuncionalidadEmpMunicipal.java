@@ -68,7 +68,7 @@ public class FuncionalidadEmpMunicipal {
 		return (retorno.getEstadisticasPorFecha(productos));
 	}
 
-	public double getVolumenCargaActual(PtoLimpioIt p) {
+	public double getVolumenCargaActual() {
 		// interfaz.elegirPLI(b.getPtosRecoleccion()); //La interfaz se dedica a buscar
 		// y devolver el PLI donde se depositara la carga
 		PtoLimpioIt p; //= interfaz.getPLIelegido()
