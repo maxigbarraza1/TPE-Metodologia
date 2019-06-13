@@ -1,7 +1,6 @@
 package actores;
 
-
-public class EmpMunicipio extends Usuario{
+public class EmpMunicipio extends Usuario {
 
 	public EmpMunicipio(String nick, String contraseña, String email) {
 		super.setNick(nick);

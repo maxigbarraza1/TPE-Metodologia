@@ -1,22 +1,22 @@
 package productos;
+
 public class Producto {
 	private int ID;
 	private String nombre;
 	private double ancho;
 	private double alto;
 	private double largo;
-	
-	
+
 	public Producto(int ID, String nombre, double ancho, double alto, double largo) {
-		this.ID=ID;
-		this.nombre=nombre;
-		this.ancho=ancho;
-		this.alto=alto;
-		this.largo=largo;
+		this.ID = ID;
+		this.nombre = nombre;
+		this.ancho = ancho;
+		this.alto = alto;
+		this.largo = largo;
 	}
-	
+
 	public double getVolumen() {
-		return ((this.alto)*(this.ancho)*(this.largo));
+		return ((this.alto) * (this.ancho) * (this.largo));
 	}
 
 	public int getID() {

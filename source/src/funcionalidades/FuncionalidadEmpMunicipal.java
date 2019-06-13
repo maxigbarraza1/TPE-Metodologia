@@ -1,98 +1,85 @@
 package funcionalidades;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Hashtable;
+
 import actores.Usuario;
 import actores.Vecino;
+import estadisticas.CalculoEstadisticas;
 import productos.Producto;
 import productos.ProductoRegistrado;
+import ubicaciones.Punto;
 import ubicaciones.Ubicacion;
-import estadisticas.CalculoEstadisticas;
-
+import ubicaciones.Zona;
 
 public class FuncionalidadEmpMunicipal {
-	//Estructura
 
+//Estructura
 	AccesoBaseDatos b;
 
-	//Constructor
-
-	public FuncionalidadEmpMunicipal(AccesoBaseDatos b) {		
-		this.b=b;
+//Constructor
+	public FuncionalidadEmpMunicipal(AccesoBaseDatos b) {
+		this.b = b;
 	}
 
-	//Metodos
-
-	public void cargarHorarios(Calendar inicio,Calendar fin) {
+//Metodos
+	public void cargarHorarios(Calendar inicio, Calendar fin) {
 		b.cargarHorarios(inicio, fin);
-	}	
+	}
 
-	public HashMap<Producto,Integer> getEstadisticasHistoricas(){
-		Calendar fin;
-		Calendar inicio;
-		ArrayList<Usuario> users = (ArrayList<Usuario>)b.getUsuarios().values();
+	//[Estadisticas]
+	public HashMap<Producto, Integer> getEstadisticasHistoricas(Calendar inicio, Calendar fin) {
+		ArrayList<Usuario> users = (ArrayList<Usuario>) b.getUsuarios().values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
-		for (int i=0;i<users.size();i++) {
-			productos.addAll(((Vecino)users.get(i)).getProductos());
+		for (int i = 0; i < users.size(); i++) {
+			productos.addAll(((Vecino) users.get(i)).getProductos());
 		}
-		CalculoEstadisticas aux=new CalculoEstadisticas(inicio,fin.getTime());
-		
+		CalculoEstadisticas aux = new CalculoEstadisticas(inicio, fin);
 		return (aux.getEstadisticasPorFecha(productos));
-		
 	}
 
-	public Hashtable<Producto,Integer> getEstadisticasGeolocalizadas(Zona z){
-		ArrayList<Usuario> users = (ArrayList<Usuario>)b.getUsuarios().values();
-		for (int i=0;i<users.size();i++) {
-			if ((Vecino)users.get(i)i)
+	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(Zona z, Calendar inicio, Calendar fin) {
+		ArrayList<Usuario> users = (ArrayList<Usuario>) b.getUsuarios().values();
+		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
+		for (int i = 0; i < users.size(); i++) {
+			Punto aux = ((Vecino) users.get(i)).getUbicacion().getCoordenada();
+			if (z.contains(aux)) {
+				productos.addAll(((Vecino) users.get(i)).getProductos());
+			}
 		}
+		CalculoEstadisticas retorno = new CalculoEstadisticas(inicio, fin);
+		return (retorno.getEstadisticasPorFecha(productos));
+	}
+
+	public HashMap<Producto, Integer> getEstadisticasMensuales(AccesoBaseDatos bDatos, Calendar mes) {
+		ArrayList<Usuario> users = (ArrayList<Usuario>) b.getUsuarios().values();
+		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
+		for (int i = 0; i < users.size(); i++) {
+			if (((Vecino) users.get(i)).getProductos().get(i).getFecha().equals(mes)) {
+				productos.addAll(((Vecino) users.get(i)).getProductos());
+			}
+		}
+		CalculoEstadisticas retorno = new CalculoEstadisticas(mes, mes);
+		return (retorno.getEstadisticasPorFecha(productos));
+	}
+
+	public double getVolumenCargaActual() {
 
 	}
 
-	
-	public ArrayList<Estadistica> getEstadisticasMensuales(AccesoBaseDatos bDatos,Calendar walter ){
-		ArrayList<Estadistica> aux= new ArrayList<Estadistica>();
-		if (bDatos.getEstadisticas().isEmpty()) {
-			return null;
-		}
-		else {
-
-			
-		}
-
-	return aux;
-}
-
-public double getVolumenCargaActual() {
-	
-}
-
-public Hashtable<Producto,Integer> getProductosReciclados(){
-	return null;
-}
-
-	
+	public Hashtable<Producto, Integer> getProductosReciclados() {
+		return null;
+	}
 
 	public void notificarPLIVacio() {
 
-		
-
 	}
-
-	
 
 	public void notificarPLILleno() {
 
-		asd
-
-
-
 	}
-
-	
 
 	public Ubicacion getUbicacionPL() {
 
@@ -100,17 +87,13 @@ public Hashtable<Producto,Integer> getProductosReciclados(){
 
 	}
 
-	
-
 	public Ubicacion getUbicacionPLI() {
 
 		return null;
 
 	}
 
-	
-
-	public ArrayList<Ubicacion> getUbicacionCamiones(){
+	public ArrayList<Ubicacion> getUbicacionCamiones() {
 		return null;
 	}
 }

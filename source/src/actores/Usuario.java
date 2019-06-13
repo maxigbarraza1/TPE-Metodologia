@@ -1,9 +1,10 @@
 package actores;
+
 public abstract class Usuario {
 	private String nick;
 	private String contraseña;
 	private String email;
-	
+
 	public String getNick() {
 		return nick;
 	}
@@ -28,7 +29,8 @@ public abstract class Usuario {
 		this.email = email;
 	}
 
-	public boolean equals (Usuario user) {
-		return ( (this.email==user.getEmail()) && (this.nick==user.getNick()) && (this.contraseña==user.getContraseña()) );
+	public boolean equals(Usuario user) {
+		return ((this.email == user.getEmail()) && (this.nick == user.getNick())
+				&& (this.contraseña == user.getContraseña()));
 	}
 }

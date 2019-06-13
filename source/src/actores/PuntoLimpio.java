@@ -1,13 +1,15 @@
 package actores;
+
 import java.util.Calendar;
 
 import ubicaciones.Direccion;
+
 public class PuntoLimpio {
 
 	private Direccion direccion;
 	private Calendar h_apertura;
 	private Calendar h_cierre;
-	
+
 	public PuntoLimpio() {
 		// TODO Auto-generated constructor stub
 	}

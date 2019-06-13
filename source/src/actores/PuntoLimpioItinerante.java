@@ -1,26 +1,26 @@
 package actores;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import productos.ProductoRegistrado;
 import ubicaciones.Direccion;
 
-import java.util.ArrayList;
-
-public class PuntoLimpioItinerante{
-	private ArrayList<ProductoRegistrado> contenido; 
+public class PuntoLimpioItinerante {
+	private ArrayList<ProductoRegistrado> contenido;
 	private double cargamax;
 	private Calendar h_apertura;
 	private Calendar h_cierre;
 	private Direccion direccion;
-	
+
 	public PuntoLimpioItinerante(double cargamax, Calendar h_apertura, Calendar h_cierre, Direccion direccion) {
-		this.h_apertura=h_apertura;
-		this.h_cierre=h_cierre;
-		this.cargamax=cargamax;
-		this.direccion=direccion;
-		this.contenido= new ArrayList<ProductoRegistrado>();
+		this.h_apertura = h_apertura;
+		this.h_cierre = h_cierre;
+		this.cargamax = cargamax;
+		this.direccion = direccion;
+		this.contenido = new ArrayList<ProductoRegistrado>();
 	}
-	
+
 	public double getCargamax() {
 		return cargamax;
 	}
@@ -54,22 +54,22 @@ public class PuntoLimpioItinerante{
 	}
 
 	public double getVolumenActual() {
-		double volumen=0;
-		 for (int i=0; i<contenido.size();i++){
-			 volumen=volumen+contenido.get(i).getVolumen();
-		 }
+		double volumen = 0;
+		for (int i = 0; i < contenido.size(); i++) {
+			volumen = volumen + contenido.get(i).getVolumen();
+		}
 		return volumen;
 	}
-	
+
 	public boolean estaLleno() {
-		return (this.getVolumenActual()>=this.cargamax);
+		return (this.getVolumenActual() >= this.cargamax);
 	}
-	
+
 	public void vaciar() {
-		for (int j=0; j<contenido.size();)
+		for (int j = 0; j < contenido.size();)
 			this.contenido.remove(j);
 	}
-	
+
 	public void addProducto(ProductoRegistrado producto) {
 		this.contenido.add(producto);
 	}
