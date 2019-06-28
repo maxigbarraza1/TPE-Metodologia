@@ -15,7 +15,8 @@ public class Ubicacion {
 		this.coordenada = coordenada;
 	}
 	
-	public boolean equals(Ubicacion u) {
+	public boolean equals(Object o) {
+		Ubicacion u = (Ubicacion)o;
 		return (this.coordenada.equals(u.coordenada));
 	}
 }

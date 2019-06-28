@@ -32,9 +32,9 @@ public class FuncionalidadVecino {
 			b.registrarProducto(nick, id, cantidad, keyPLI);
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick, Calendar ini, Calendar fin) {
+	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick) {
 		if (this.usuarioslog.contains(nick))
-			return b.getEstadisticasPersonales(nick, ini, fin);
+			return b.getEstadisticasPersonales(nick);
 		return null;
 	}
 

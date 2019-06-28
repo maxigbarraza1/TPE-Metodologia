@@ -37,8 +37,8 @@ public class FuncionalidadEmpMunicipal {
 		return b.getVolumenCargaActual(keyPLI);
 	}
 
-	public Hashtable<Producto, Integer> getProductosReciclados() {
-		return null;
+	public HashMap<PtoLimpioIt, HashMap<Producto,Integer>> getProductosReciclados() {
+		return b.getProductosReciclados();
 	}
 
 	public boolean preguntarPLIVacio(int keyPLI) {

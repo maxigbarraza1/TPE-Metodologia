@@ -23,9 +23,8 @@ public class Vecino extends Usuario {
 		productos.add(producto);
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasPersonales(Calendar ini, Calendar fin) {
-		// Creamos una variable auxiliar de estadisticas con la finalidad de que calcule
-		// las estadisticas que se devolveran en las demas clases
+	public HashMap<Producto, Integer> getEstadisticasPersonales() {
+		CalculoEstadisticas c = new EstadisticasPersonales(this.getNick());
 		CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
 		return aux.getEstadisticasPorFecha(this.productos);
 	}

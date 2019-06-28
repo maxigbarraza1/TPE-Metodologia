@@ -30,7 +30,8 @@ public class Punto {
 		this.y = y;
 	}
 
-	public boolean equals(Punto p) {
+	public boolean equals(Object o) {
+		Punto p = (Punto)o;
 		return (p.getX() == this.x && p.getY() == this.y);
 	}
 

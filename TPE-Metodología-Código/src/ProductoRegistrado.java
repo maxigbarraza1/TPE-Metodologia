@@ -35,7 +35,8 @@ public class ProductoRegistrado {
 		this.fecha = fecha;
 	}
 
-	public boolean equals (ProductoRegistrado p) {
+	public boolean equals (Object o) {
+		ProductoRegistrado p = (ProductoRegistrado)o;
 		return ((this.producto.getID()==p.getProducto().getID()) && (this.getCantidad()==p.getCantidad()) && (this.fecha.equals(p.getFecha())));
 	}
 }

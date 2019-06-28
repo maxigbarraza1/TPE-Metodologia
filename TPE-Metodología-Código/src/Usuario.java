@@ -33,7 +33,8 @@ public abstract class Usuario {
 		this.email = email;
 	}
 	
-	public boolean equals(Usuario user) {
+	public boolean equals(Object o) {
+		Usuario user = (Usuario)o;
 		return ((this.email.equals(user.getEmail())) && (this.nick.equals(user.getNick())) && (this.contraseña.equals(user.getContraseña())));
 	}
 }

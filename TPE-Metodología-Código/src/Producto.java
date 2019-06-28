@@ -57,7 +57,8 @@ public class Producto {
 		this.largo = largo;
 	}
 
-	public boolean equals (Producto p) {
+	public boolean equals (Object o) {
+		Producto p = (Producto)o;
 		return (this.ID==p.getID());
 	}
 }

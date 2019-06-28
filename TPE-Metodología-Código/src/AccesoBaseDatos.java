@@ -117,9 +117,9 @@ public class AccesoBaseDatos {
 		return (this.prodReciclables.containsKey(iD));
 	}
 
-	public HashMap<Producto,Integer> getEstadisticasPersonales(String nick, Calendar ini, Calendar fin) {
-		Usuario user = this.usuarios.get(nick);
-		return ((Vecino)user).getEstadisticasPersonales(ini, fin);
+	public HashMap<Producto,Integer> getEstadisticasPersonales(String nick) {
+		Vecino vecino = this.vecinos.get(nick);
+		return vecino.getEstadisticasPersonales();
 	}
 
 	public HashMap<Producto, Integer> getEstadisticasCiudad(Calendar ini, Calendar fin) {
