@@ -89,6 +89,10 @@ public class AccesoBaseDatos {
 		return vecinos.get(nick);
 	}
 	
+	public HashMap<String, Vecino> getVecinos() {
+		return this.vecinos;
+	}
+	
 	public void registrarProducto(String nick, int id, int cantidad, int keyPLI) {
 		Vecino vecino = this.vecinos.get(nick); //Busco el vecino con el nick
 		if (this.verificarIdProducto(id))
@@ -122,17 +126,12 @@ public class AccesoBaseDatos {
 		return vecino.getEstadisticasPersonales();
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasCiudad(Calendar ini, Calendar fin) {
-		ArrayList<Vecino> vecinos = (ArrayList<Vecino>)this.vecinos.values();
-		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
-		for (int i = 0; i < vecinos.size(); i++) {
-			productos.addAll((vecinos.get(i)).getProductos());
-		}
-		CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin); //Variable aux de estadísticas para calcular las estadísticas que se devolverán en lase demas clases.
-		return aux.getEstadisticasPorFecha(productos);
+	public HashMap<Producto, Integer> getEstadisticasVecinoPromedio() {
+		CalculoEstadisticas c = new CalculoEstadisticas();
+		return c.getEstadisticasVecinoPromedio(this.getVecinos());
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasHistoricas() {
+	public HashMap<Producto, Integer> getEstadisticasHistoricas() { //Delegar responsabilidad a CalculoEstadisticas
 		ArrayList<Vecino> vecinos = (ArrayList<Vecino>)this.vecinos.values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
 		for (int i = 0; i < vecinos.size(); i++) {
@@ -142,7 +141,7 @@ public class AccesoBaseDatos {
 		return aux.getEstadisticasPorFecha(productos);
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(Zona z, Calendar inicio, Calendar fin) {
+	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(Zona z, Calendar inicio, Calendar fin) { //Delegar responsabilidad a CalculoEstadisticas y ver Zona
 		ArrayList<Usuario> users = (ArrayList<Usuario>)this.getUsuarios().values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
 		for (int i = 0; i < users.size(); i++) {
@@ -155,7 +154,7 @@ public class AccesoBaseDatos {
 		return (retorno.getEstadisticasPorFecha(productos));
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar mes) {
+	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar mes) { //Delegar responsabilidad a CalculoEstadisticas
 		ArrayList<Usuario> users = (ArrayList<Usuario>)this.getUsuarios().values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
 		for (int i = 0; i < users.size(); i++) {

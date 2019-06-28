@@ -24,9 +24,8 @@ public class Vecino extends Usuario {
 	}
 
 	public HashMap<Producto, Integer> getEstadisticasPersonales() {
-		CalculoEstadisticas c = new EstadisticasPersonales(this.getNick());
-		CalculoEstadisticas aux = new CalculoEstadisticas(ini, fin);
-		return aux.getEstadisticasPorFecha(this.productos);
+		CalculoEstadisticas aux = new CalculoEstadisticas();
+		return aux.getEstadisticasPorFecha(this.getProductos());
 	}
 
 	public ArrayList<ProductoRegistrado> getProductos() {

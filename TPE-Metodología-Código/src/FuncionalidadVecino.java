@@ -28,8 +28,7 @@ public class FuncionalidadVecino {
 	}
 
 	public void registrarProducto(int id, int cantidad, String nick, int keyPLI) {
-		if (b.verificarIdProducto(id))
-			b.registrarProducto(nick, id, cantidad, keyPLI);
+		b.registrarProducto(nick, id, cantidad, keyPLI);
 	}
 
 	public HashMap<Producto, Integer> getEstadisticasPersonales(String nick) {
@@ -50,9 +49,9 @@ public class FuncionalidadVecino {
 		return null;
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasDeLaCiudad(String nick, Calendar ini, Calendar fin) {
+	public HashMap<Producto, Integer> getEstadisticasVecinoPromedio(String nick) {
 		if (this.usuarioslog.contains(nick))
-			return b.getEstadisticasCiudad(ini, fin);
+			return b.getEstadisticasVecinoPromedio();
 		return null;
 	}
 

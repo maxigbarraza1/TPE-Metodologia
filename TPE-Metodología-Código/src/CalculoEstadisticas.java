@@ -15,6 +15,35 @@ public class CalculoEstadisticas {
 		this.fechainicio = fechaini;
 		this.fechafin = fechaf;
 	}
+	
+	public HashMap<Producto, Integer> getEstadisticasPersonales(ArrayList<ProductoRegistrado> p) {
+		HashMap<Producto, Integer> stats = new HashMap<Producto, Integer>();
+		for (int i = 0; i < p.size(); i++) {
+			if (stats.containsKey(p.get(i).getProducto()))
+				stats.put(p.get(i).getProducto(), stats.get(p.get(i).getProducto()) + p.get(i).getCantidad());
+			else
+				stats.put(p.get(i).getProducto(), p.get(i).getCantidad());
+		}
+		return stats;
+	}
+	
+	public HashMap<Producto, Integer> getEstadisticasVecinoPromedio(HashMap<String, Vecino> vecinos) {
+		HashMap<Producto, Integer> stats = new HashMap<Producto, Integer>();
+		for (HashMap.Entry<String, Vecino> entry : vecinos.entrySet()) {
+			ArrayList<ProductoRegistrado> productos = entry.getValue().getProductos();
+			for (int i = 0; i<productos.size(); i++) {
+				if (stats.containsKey(productos.get(i).getProducto())) 
+					stats.put(productos.get(i).getProducto(), stats.get(productos.get(i).getProducto()) + productos.get(i).getCantidad());
+				else
+					stats.put(productos.get(i).getProducto(), productos.get(i).getCantidad());
+			}
+		}
+		for (HashMap.Entry<Producto, Integer> entry : stats.entrySet()) {
+			int cantPromedio = (entry.getValue()/stats.size());
+			stats.put(entry.getKey(), cantPromedio);
+		}
+		return stats;
+	}
 
 	public HashMap<Producto, Integer> getEstadisticasPorFecha(ArrayList<ProductoRegistrado> p) {
 		HashMap<Producto, Integer> stats = new HashMap<Producto, Integer>();
