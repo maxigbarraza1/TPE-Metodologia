@@ -1,6 +1,5 @@
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 public class FuncionalidadEmpMunicipal {
 	private AccesoBaseDatos b;
@@ -25,12 +24,12 @@ public class FuncionalidadEmpMunicipal {
 		return b.getEstadisticasHistoricas();
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(Zona z, Calendar inicio, Calendar fin) {
-		return b.getEstadisticasGeolocalizadas(z, inicio, fin);
+	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(double x, double y, double altura, double ancho, Calendar inicio, Calendar fin) {
+		return b.getEstadisticasGeolocalizadas(x,y,altura,ancho,inicio,fin);
 	}
 
-	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar mes) {
-		return b.getEstadisticasMensuales(mes);
+	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar ini, Calendar fin) {
+		return b.getEstadisticasMensuales(ini,fin);
 	}
 
 	public double getVolumenCargaActual(int keyPLI) {

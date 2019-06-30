@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class mainDePrueba {
 
@@ -17,6 +18,17 @@ public class mainDePrueba {
 			//MENSAJE DE ERROR
 		}
 		fv.registrarProducto(1, 3, "Juan T", 1); //Registro producto con ID=1, cant=3 y key de PLI a ingresar = 1
-		HashMap<Producto,Integer> est =  fv.getEstadisticasPersonales("Juan T");
+		int opcion = 1; //Opción ingresada
+		switch (opcion) {
+			case 1:
+				HashMap<Producto, Integer> estPersonal = fv.getEstadisticasPersonales("Juan T");
+			break;
+			case 2:
+				HashMap<Producto, Integer> estPromedio = fv.getEstadisticasVecinoPromedio("Juan T");
+			break;
+			case 3:
+				ArrayList<ONG> estONG = fv.getEstadisticasONG("Juan T");
+			break;
+		}
 	}
 }

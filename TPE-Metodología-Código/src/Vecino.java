@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class Vecino extends Usuario {
@@ -25,7 +24,7 @@ public class Vecino extends Usuario {
 
 	public HashMap<Producto, Integer> getEstadisticasPersonales() {
 		CalculoEstadisticas aux = new CalculoEstadisticas();
-		return aux.getEstadisticasPorFecha(this.getProductos());
+		return aux.getEstadisticas(this.getProductos());
 	}
 
 	public ArrayList<ProductoRegistrado> getProductos() {

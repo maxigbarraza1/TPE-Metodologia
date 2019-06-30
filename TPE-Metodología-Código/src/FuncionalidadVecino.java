@@ -1,4 +1,3 @@
-import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,7 +42,7 @@ public class FuncionalidadVecino {
 		return null;
 	}
 
-	public ArrayList<String> getEstadisticasONG(String nick) {
+	public ArrayList<ONG> getEstadisticasONG(String nick) {
 		if (this.usuarioslog.contains(nick))
 			return b.getInfoONG();
 		return null;

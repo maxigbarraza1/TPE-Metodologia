@@ -8,7 +8,7 @@ public class AccesoBaseDatos {
 	private HashMap<Integer, Producto> prodReciclables; //HashMap con <id,Producto> para facilitar la búsqueda
 	private HashMap<Integer,PuntoLimpio> PLs;
 	private HashMap<Integer,PtoLimpioIt> PLIs;
-	private ArrayList<String> infoONG;
+	private ArrayList<ONG> infoONG;
 	private HashMap<Integer, Camion> camiones;
 	private Calendar hapertura;
 	private Calendar hcierre;
@@ -21,7 +21,7 @@ public class AccesoBaseDatos {
 		this.prodReciclables = new HashMap<Integer, Producto>();
 		this.PLs = new HashMap<Integer,PuntoLimpio>();
 		this.PLIs = new HashMap<Integer,PtoLimpioIt>();
-		this.infoONG = new ArrayList<String>();
+		this.infoONG = new ArrayList<ONG>();
 		this.camiones = new HashMap<Integer, Camion>();
 		this.keyPLIS = 0;
 		this.keyCAMIONES = 0;
@@ -71,11 +71,11 @@ public class AccesoBaseDatos {
 		this.keyPLIS++;
 	}
 
-	public ArrayList<String> getInfoONG() {
+	public ArrayList<ONG> getInfoONG() {
 		return infoONG;
 	}
 
-	public void setInfoONG(ArrayList<String> infoONG) {
+	public void setInfoONG(ArrayList<ONG> infoONG) {
 		this.infoONG = infoONG;
 	}
 
@@ -131,39 +131,31 @@ public class AccesoBaseDatos {
 		return c.getEstadisticasVecinoPromedio(this.getVecinos());
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasHistoricas() { //Delegar responsabilidad a CalculoEstadisticas
+	public HashMap<Producto, Integer> getEstadisticasHistoricas() {
 		ArrayList<Vecino> vecinos = (ArrayList<Vecino>)this.vecinos.values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
 		for (int i = 0; i < vecinos.size(); i++) {
 			productos.addAll((vecinos.get(i)).getProductos());
 		}
 		CalculoEstadisticas aux = new CalculoEstadisticas();
-		return aux.getEstadisticasPorFecha(productos);
+		return aux.getEstadisticas(productos);
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(Zona z, Calendar inicio, Calendar fin) { //Delegar responsabilidad a CalculoEstadisticas y ver Zona
-		ArrayList<Usuario> users = (ArrayList<Usuario>)this.getUsuarios().values();
-		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
-		for (int i = 0; i < users.size(); i++) {
-			Punto aux = ((Vecino) users.get(i)).getUbicacion().getCoordenada();
-			if (z.contains(aux)) {
-				productos.addAll(((Vecino) users.get(i)).getProductos());
-			}
-		}
-		CalculoEstadisticas retorno = new CalculoEstadisticas(inicio, fin);
-		return (retorno.getEstadisticasPorFecha(productos));
+	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(double x, double y, double altura, double ancho, Calendar inicio, Calendar fin) {
+		ArrayList<Vecino> vecinos = (ArrayList<Vecino>)this.vecinos.values();
+		Zona z = new Zona(x,y,altura,ancho);
+		CalculoEstadisticas aux = new CalculoEstadisticas(inicio, fin);
+		return aux.getEstadisticasGeolocalizadas(z,vecinos);
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar mes) { //Delegar responsabilidad a CalculoEstadisticas
-		ArrayList<Usuario> users = (ArrayList<Usuario>)this.getUsuarios().values();
+	public HashMap<Producto, Integer> getEstadisticasMensuales(Calendar ini, Calendar fin) {
+		ArrayList<Vecino> vecinos = (ArrayList<Vecino>)this.vecinos.values();
 		ArrayList<ProductoRegistrado> productos = new ArrayList<ProductoRegistrado>();
-		for (int i = 0; i < users.size(); i++) {
-			if (((Vecino) users.get(i)).getProductos().get(i).getFecha().equals(mes)) {
-				productos.addAll(((Vecino) users.get(i)).getProductos());
-			}
+		for (int i = 0; i < vecinos.size(); i++) {
+			productos.addAll(((Vecino) vecinos.get(i)).getProductos());
 		}
-		CalculoEstadisticas retorno = new CalculoEstadisticas(mes, mes);
-		return (retorno.getEstadisticasPorFecha(productos));
+		CalculoEstadisticas retorno = new CalculoEstadisticas(ini, fin);
+		return retorno.getEstadisticasPorFecha(productos);
 	}
 	
 	public HashMap<PtoLimpioIt,HashMap<Producto, Integer>> getProductosReciclados() {

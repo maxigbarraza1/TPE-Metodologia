@@ -16,7 +16,7 @@ public class CalculoEstadisticas {
 		this.fechafin = fechaf;
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasPersonales(ArrayList<ProductoRegistrado> p) {
+	public HashMap<Producto, Integer> getEstadisticas(ArrayList<ProductoRegistrado> p) {
 		HashMap<Producto, Integer> stats = new HashMap<Producto, Integer>();
 		for (int i = 0; i < p.size(); i++) {
 			if (stats.containsKey(p.get(i).getProducto()))
@@ -58,14 +58,24 @@ public class CalculoEstadisticas {
 		return stats;
 	}
 	
-	public HashMap<Producto, Integer> getEstadisticasHistoricas(ArrayList<ProductoRegistrado> p) {
+	public HashMap<Producto, Integer> getEstadisticasGeolocalizadas(Zona z, ArrayList<Vecino> vecinos) {
 		HashMap<Producto, Integer> stats = new HashMap<Producto, Integer>();
-		for (int i = 0; i < p.size(); i++) {
-			if (stats.containsKey(p.get(i).getProducto()))
-				stats.put(p.get(i).getProducto(), stats.get(p.get(i).getProducto()) + p.get(i).getCantidad());
-			else
-				stats.put(p.get(i).getProducto(), p.get(i).getCantidad());
+		for (int i = 0; i < vecinos.size(); i++) {
+			if (z.contains(vecinos.get(i).getUbicacion().getCoordenada())) {
+				ArrayList<ProductoRegistrado> p = vecinos.get(i).getProductos();
+				for (int j = 0; j < p.size(); j++) {
+					if ((p.get(i).getFecha().before(fechafin)) && (p.get(i).getFecha().after(fechainicio))) {
+						if (stats.containsKey(p.get(i).getProducto()))
+							stats.put(p.get(i).getProducto(), stats.get(p.get(i).getProducto()) + p.get(i).getCantidad());
+						else
+							stats.put(p.get(i).getProducto(), p.get(i).getCantidad());
+					}
+				}
+			}
 		}
 		return stats;
 	}
+	
+	
+	
 }
